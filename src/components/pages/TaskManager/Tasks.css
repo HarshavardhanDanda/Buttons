@@ -1,0 +1,139 @@
+table {
+    border: 2px solid rgb(200, 200, 200);
+    font-family: Verdana, sans-serif;
+}
+thead {
+    background-color: #3f87a6;
+    color: #fff;
+}
+tbody {
+    background-color: #e4f0f5;
+}
+th,td {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgb(190, 190, 190);
+}
+.outer-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.task-manager-heading {
+    text-align: center;
+    font-size: 35px;
+    font-family: Verdana, sans-serif;
+    padding-bottom: 25px;
+}
+.edit {
+    background-color: #428bca;
+    color: white;  
+}
+.delete {
+    background-color: #f0003c;
+    color: white;  
+}
+.Button {
+    font-family: Verdana, sans-serif;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    border: none;
+}
+.edit:hover {
+    cursor: pointer;
+    background-color: #3f87a6;
+}
+.delete:hover {
+    cursor: pointer;
+    background-color: #cc2329;
+}
+
+/* styling for forms */
+.task-input {
+    width: 400px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: Verdana, sans-serif;
+    padding-left: 10px;
+}
+.task-input::placeholder{
+   font-size: 20px;
+   font-family: Verdana, sans-serif;
+   padding-left: 10px;
+}
+.task-input:focus::placeholder,.textarea:focus::placeholder{
+    color: white
+}
+.textarea {
+    width: 400px;
+    height: 150px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: Verdana, sans-serif;
+    padding-left: 10px;
+    padding-top: 10px
+}
+.task-input:focus,.textarea:focus {
+    background-color: rgb(23, 167, 215);
+    color: white;
+    outline: none;
+}
+form {
+    background-color: #b2dcec;
+    min-width: 600px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.full-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+    min-height: 600px;
+}
+.heading {
+    background-color: #b2dcec;
+    padding-top: 20px;
+    width: 600px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: lighter;
+    font-family: Verdana, sans-serif;
+    padding-bottom: 20px;
+}
+label {
+    font-family: Verdana, sans-serif;
+}
+.task-submit {
+    width: 80px;
+    height: 30px;
+    background-color: rgb(27, 78, 231);
+    border-radius: 5px;
+    color: white;
+    font-family: Verdana, sans-serif;
+    margin-top: 20px;
+    border: none;
+
+}
+.task-submit:hover {
+    cursor: pointer;
+    background-color: rgb(23, 167, 215);
+}
+.create-children {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.create-task:hover {
+    cursor: pointer
+}
