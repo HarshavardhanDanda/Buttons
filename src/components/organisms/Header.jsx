@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import { HeaderDropDown } from '../atoms/HeaderDropDown/HeaderDropDown';
 
 const useStyles = makeStyles({
     html:{
@@ -23,8 +24,8 @@ const useStyles = makeStyles({
       fontStyle: "Verdana"
     },
     block1:{
-      position: "sticky",
-      top: 0,
+      position: "relative",
+      // top: 0,
       padding: "0px 20px",
       backgroundColor: "#ffffff",
       display: "flex",
@@ -34,7 +35,6 @@ const useStyles = makeStyles({
       borderBottomColor: "#ededed",
       borderBottomStyle: "solid",
       borderBottomWidth: 2,
-      zIndex : 10
     },
     block2:{
       width: 700,
@@ -87,9 +87,24 @@ const useStyles = makeStyles({
     }
 })
 export const Header = (props) => {
-  let {style} = props
+  const navigate = useNavigate()
+  const calculatorPage = () => {
+    navigate('/calculator')
+  }
+  const weatherPage = () => {
+    navigate('/weather')
+  }
+  const tasksPage = () => {
+    navigate('/tasks')
+  }
+  const items = {
+    "Calculator": calculatorPage,
+    "Weather": weatherPage,
+    "Task Manager": tasksPage
+  }
   const classes = useStyles();
   const [searchState, setSearchState] = useState(false)
+
   const handleSearch = () => {
     console.log(searchState)
     if(searchState){
@@ -98,15 +113,13 @@ export const Header = (props) => {
       setSearchState(true)
     }
   }
-  const navigate = useNavigate()
+  
   return (
-    <React.Fragment>
-      <div> &nbsp;</div>
-      <div className={classes.block1} style={style}>
+      <div className={classes.block1}>
         <Logo />
         <div className={classes.block2}>
           <button className={classes.button}><span className={classes.buttonText} onClick={()=>{navigate('/')}}> Home</span></button>
-          <button className={classes.button}><span className={classes.buttonText}> Button2</span></button>
+          <HeaderDropDown items={items}>Applications</HeaderDropDown>
           <button className={classes.button}><span className={classes.buttonText}> Button3</span></button>
           <button className={classes.button}><span className={classes.buttonText}> Button4</span></button>
           <button className={classes.button}><span className={classes.buttonText}> Button5</span></button>
@@ -116,6 +129,5 @@ export const Header = (props) => {
           <SearchIcon className={classes.searchIcon} onClick={handleSearch}/>
         </div>
       </div>
-    </React.Fragment>
   )
 }

@@ -12,12 +12,6 @@ function HomePage() {
       <Buttons /><br></br><br></br>
       <TestButton /><br></br><br></br>
       <DropDown /><br></br><br></br>
-      <TestDropDown /><br></br><br></br>
-      <TestDropDown /><br></br><br></br>
-      <TestDropDown /><br></br><br></br>
-      <TestDropDown /><br></br><br></br>
-      <TestDropDown /><br></br><br></br>
-      <TestDropDown /><br></br><br></br>
     </div>
   );
 }

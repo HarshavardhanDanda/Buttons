@@ -2,42 +2,32 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ActionButton } from './ActionButton.jsx'
-import { useNavigate } from 'react-router-dom';
-import AddIcon from '@mui/icons-material/Add';
 import { Header } from "../../organisms/Header";
 import './Tasks.css'
+import { useNavigate } from 'react-router-dom';
 
-export const Tasks = () => {
-  const navigate = useNavigate();
-  
-  const [data, setData] = useState([])
+export const TaskHistory = () => {
+    const [data, setData] = useState([])
+  const navigate = useNavigate()
   useEffect(() => {
     const fetchData = async() => {
-      const response = await axios.get('http://localhost:8888/tasks')
+      const response = await axios.get('http://localhost:8888/history')
       const tasks = response.data;
       setData(tasks)
     }
     fetchData();
   }, [])
 
-  const handleCreate = () => {
-    navigate(`/tasks/create`)
+  const taskManager = () => {
+    navigate('/tasks')
   }
 
-  const handleEdit = (id) => {
-    navigate(`/tasks/edit/${id}`)
-  }
-  
-  const handleDone = async(id) => {
-    const response = await axios.get(`http://localhost:8888/tasks/${id}`)
-    const json = response.data
-    await axios.post(`http://localhost:8888/history`,json )
-    await axios.delete(`http://localhost:8888/tasks/${id}`)
+  const handleRestore = async(id) => {
+    const response = await axios.get(`http://localhost:8888/history/${id}`)
+    const json = response.data;
+    await axios.post('http://localhost:8888/tasks', json )
+    await axios.delete(`http://localhost:8888/history/${id}`)
     window.location.reload()
-  }
-
-  const showHistory = () => {
-    navigate('/tasks/history')
   }
 
   return (
@@ -45,8 +35,8 @@ export const Tasks = () => {
       <Header />
       <div className="outer-container">
         <div className='task-manager-heading'>
-           Welcome to Task Manager 
-           <ActionButton children="History" className="history Button" onClick={() => showHistory()}/>
+           Task History
+           <ActionButton children="Go Back" className="history Button" onClick={() => taskManager()}/>
         </div>
         <table>
           <thead>
@@ -69,16 +59,12 @@ export const Tasks = () => {
                     <td>{task.timestamp}</td>
                     <td>
                       <div style={{display: "flex", width: "200px", justifyContent: "space-around"}}>
-                        <ActionButton children="Edit" className="edit Button" onClick={() => handleEdit(task.id)}/>
-                        <ActionButton children="Done" className="delete Button" onClick={() => handleDone(task.id)}/>
+                        <ActionButton children="Restore" className="delete Button" onClick={() => handleRestore(task.id)}/>
                     </div>
                     </td>
                   </tr>
                 )
               }))}
-              <tr>
-                <td  colSpan={5} className="create-task" onClick={() => handleCreate()}><span className="create-children"><AddIcon/>Create new Task</span></td>
-              </tr>
           </tbody>
           </table>
       </div>
